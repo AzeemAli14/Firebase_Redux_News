@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "252242498020",
+    "project_id": "rndemo-fd302",
+    "storage_bucket": "rndemo-fd302.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:252242498020:android:f4491c84faf1295d01f7f1",
+        "android_client_info": {
+          "package_name": "com.rn_news_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "252242498020-7cir4bfg42tqloj3kq6vautcd43dtohg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArrQrTanK_iXBKzi3csB2NUVBaLZyRbFM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "252242498020-7cir4bfg42tqloj3kq6vautcd43dtohg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
