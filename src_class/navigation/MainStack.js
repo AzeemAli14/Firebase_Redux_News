@@ -6,21 +6,17 @@ import {connect, Provider} from 'react-redux';
 import configureStore from '../redux/store';
 
 // const store = configureStore();
-// const RouterRedux = connect()();
 
 const MainStack = () => {
   const Stack = createStackNavigator();
 
   return (
     // <Provider store={store}>
-    //   <RouterRedux
-    //     tintColor="#ffffff">
         <Stack.Navigator
-          screenOptions={{headerShown: false, statusBarColor: COLOR_WHITE}}
+          screenOptions={{headerShown: false, statusBarColor: "#fff"}}
           initialRouteName="Tabs">
           <Stack.Screen name="Tabs" component={TabStack} />
         </Stack.Navigator>
-  //     </RouterRedux>
   //   </Provider>
   );
 };

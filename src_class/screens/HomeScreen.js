@@ -1,42 +1,60 @@
-import React, {useEffect, useState} from 'react';
-import { NativeBaseProvider, FlatList } from 'native-base';
+import React, {Component} from 'react';
+import {NativeBaseProvider, FlatList} from 'native-base';
+// import {View, FlatList} from 'react-native';
 import Header from '../components/Header';
-import config from '../api/AxiosConfig'
+import config from '../api/AxiosConfig';
 import NewsCard from '../components/NewsCard';
 
-const HomeScreen = () => {
-  const [news, setNews] = useState([]);
-
-  getNewsFromAPI = () => {
-    config.get('top-headlines?country=us&category=general&apiKey=fd66926ebe4747d3aacee1336c5b56dd')
-        .then(async function (response) {
-            setNews(response.data);
-        })
-        .catch(function (error) {
-            alert(error)
-        })
+class HomeScreen extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      news: [],
+    };
   }
 
-  if(!news) {
-    return alert("Problem with resposnse")
+  getNewsFromAPI = async() => {
+    await config
+      .get(
+        'top-headlines?country=us&category=general&apiKey=fd66926ebe4747d3aacee1336c5b56dd',
+      )
+      .then(response => {
+        const news = response.data;
+        // console.log(newsData);
+        this.setState({news});
+      })
+      .catch(function (error) {
+        alert(error);
+      });
+  };
+  
+  componentDidMount () {
+    this.getNewsFromAPI();
   }
 
-  useEffect(() => {
-    getNewsFromAPI()
-  }, []);
+  renderItem = ({item}) => {
+    console.log(item.title);
+    return <NewsCard item={item} />;
+  };
 
-  return (
-    <NativeBaseProvider>
-      <Header titleText="Headlines" />
-          <FlatList
-            data={news.articles}
-            keyExtractor={(item, index) => 'key' + index}
-            renderItem={({item}) => {
-              return <NewsCard item = {item}/>
-          }}
-            />
-    </NativeBaseProvider>
-  );
+  render() {
+    const {news} = this.state;
+    if (!news) {
+      return alert('Problem with resposnse');
+    }
+    console.log(news.articles)
+    return (
+      <NativeBaseProvider>
+        <Header titleText="Headlines" />
+        
+        <FlatList
+          data={news.articles}
+          // keyExtractor={(item, index) => 'key' + index}
+          renderItem={this.renderItem}
+        />
+      </NativeBaseProvider>
+    );
+  }
 }
 
 export default HomeScreen;

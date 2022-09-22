@@ -4,13 +4,13 @@ import {windowHeight, windowWidth} from '../utils/Dimentions';
 
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 
-const SocialButton = ({
+function SocialButton ({
   buttonTitle,
   btnType,
   color,
   backgroundColor,
   ...rest
-}) => {
+}) {
   let bgColor = backgroundColor;
   return (
     <TouchableOpacity

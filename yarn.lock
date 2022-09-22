@@ -7380,6 +7380,11 @@
     "jscodeshift" "^0.13.1"
     "nullthrows" "^1.1.1"
 
+"react-native-fbsdk@^3.0.0":
+  "integrity" "sha512-i0JocuzLlGk13J0xFDjm8GlX7SADAL2kh/syE/HOn5HHdW+PFjC31MNj5AtzIw2TicHXpHGO6VPKNfdWFbxboA=="
+  "resolved" "https://registry.npmjs.org/react-native-fbsdk/-/react-native-fbsdk-3.0.0.tgz"
+  "version" "3.0.0"
+
 "react-native-gesture-handler@^2.6.0", "react-native-gesture-handler@>= 1.0.0":
   "integrity" "sha512-IwdYdt5FKjjbRSrSqh8hoNctlYZl5DFnqSJ6buKtrl4A4gyzkrtW6WcmOFl5LnCa6Bcw+znSD77O6UiZ8qda7g=="
   "resolved" "https://registry.npmjs.org/react-native-gesture-handler/-/react-native-gesture-handler-2.6.0.tgz"
@@ -7459,7 +7464,7 @@
     "prop-types" "^15.7.2"
     "yargs" "^16.1.1"
 
-"react-native@*", "react-native@^0.0.0-0 || 0.60 - 0.70 || 1000.0.0", "react-native@>=0.40.0", "react-native@>=0.42.0", "react-native@>=0.48.4", "react-native@>=0.50.0", "react-native@>=0.57", "react-native@>=0.59", "react-native@0.70.0":
+"react-native@*", "react-native@^0.0.0-0 || 0.60 - 0.70 || 1000.0.0", "react-native@>=0.40.0", "react-native@>=0.42.0", "react-native@>=0.48.4", "react-native@>=0.50.0", "react-native@>=0.57", "react-native@>=0.59", "react-native@>=0.59.0", "react-native@0.70.0":
   "integrity" "sha512-QjXLbrK9f+/B2eCzn6kAvglLV/8nwPuFGaFv7ggPpAzFRyx5bVN1dwQLHL3MrP7iXR/M7Jc6Nnid7tmRSic6vA=="
   "resolved" "https://registry.npmjs.org/react-native/-/react-native-0.70.0.tgz"
   "version" "0.70.0"

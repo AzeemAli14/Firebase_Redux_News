@@ -1,26 +1,34 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {View, TextInput, StyleSheet} from 'react-native';
 import {windowHeight, windowWidth} from '../utils/Dimentions';
 
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 
-const FormInput = ({labelValue, placeholderText, iconType, ...rest}) => {
-  return (
-    <View style={styles.inputContainer}>
-      <View style={styles.iconStyle}>
-        <EvilIcons name={iconType} size={25} color="#666" />
+class FormInput extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <View style={styles.inputContainer}>
+        <View style={styles.iconStyle}>
+          <EvilIcons name={this.props.iconType} size={25} color="#666" />
+        </View>
+        <TextInput
+          value={this.props.labelValue}
+          style={styles.input}
+          numberOfLines={1}
+          placeholder={this.props.placeholderText}
+          placeholderTextColor="#666"
+          onChangeText={this.props.onChangeText}
+          keyboardType={this.props.keyboardType}
+          secureTextEntry={this.props.secureTextEntry}
+        />
       </View>
-      <TextInput
-        value={labelValue}
-        style={styles.input}
-        numberOfLines={1}
-        placeholder={placeholderText}
-        placeholderTextColor="#666"
-        {...rest}
-      />
-    </View>
-  );
-};
+    );
+  }
+}
 
 export default FormInput;
 

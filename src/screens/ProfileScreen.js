@@ -36,7 +36,7 @@ const ProfileScreen = () => {
     ImagePicker.openPicker({
       width: 300,
       height: 400,
-      cropping: true,
+      cropping: false,
     }).then(image => {
       console.log(image);
       setProfile(image.path);

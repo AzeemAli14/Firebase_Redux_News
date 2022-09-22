@@ -12,23 +12,26 @@ import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 import SocialButton from '../components/SocialButton';
 import {AuthContext} from '../navigation/AuthProvider';
-import TopBar from '../components/TopBar';
+import { connect } from 'react-redux';
 
 const LoginScreen = ({navigation}) => {
   const [email, setEmail] = useState();
+  // Here we will set the state of the email form.
   const [password, setPassword] = useState();
+  // Here we will set the state of the password form.
 
   const {login } = useContext(AuthContext);
+  // Here we will set the context hook of the login form.
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <TopBar />
       <Image
         source={require('../assets/login.png')}
         style={styles.logo}
       />
       <Text style={styles.text}>Welcome Back</Text>
 
+      {/* // FormInput is our custom component that will receive the email props. */}
       <FormInput
         labelValue={email}
         onChangeText={(userEmail) => setEmail(userEmail)}
@@ -39,6 +42,7 @@ const LoginScreen = ({navigation}) => {
         autoCorrect={false}
       />
 
+{/* // FormInput is our custom component that will receive the PASSWORD props. */}
       <FormInput
         labelValue={password}
         onChangeText={(userPassword) => setPassword(userPassword)}
@@ -47,6 +51,7 @@ const LoginScreen = ({navigation}) => {
         secureTextEntry={true}
       />
 
+{/* // FormInput is our custom component that will receive the onPress props and will send to the context API */}
       <FormButton
         buttonTitle="Sign In"
         onPress={() => login(email, password)}
@@ -87,18 +92,15 @@ const LoginScreen = ({navigation}) => {
   );
 };
 
-// const mapStateToProps = ({ routes, sessionReducer: { restoring, loading, user, error, logged } }) => ({
-//   routes: routes,
-//   restoring: restoring,
-//   loading: loading,
+//Here we send the states to the redux props
+// const mapStateToProps = ({ sessionReducer: { user, logged } }) => ({
 //   user: user,
-//   error: error,
 //   logged: logged
 // });
 
+// //Here we dispatching states to the redux props
 // const mapDispatchToProps = {
-//   login: loginUser,
-//   restore: restoreSession
+//   login: login,
 // };
 
 // export default connect(
@@ -106,7 +108,7 @@ const LoginScreen = ({navigation}) => {
 //   mapDispatchToProps
 // )(LoginScreen);
 
-export default LoginScreen
+export default LoginScreen;
 
 const styles = StyleSheet.create({
   container: {

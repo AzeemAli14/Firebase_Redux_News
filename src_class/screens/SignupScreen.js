@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react';
+import React, {Component, useContext, useState} from 'react';
 import {
   View,
   Text,
@@ -6,16 +6,18 @@ import {
   Platform,
   StyleSheet,
   Image,
+  Dimensions,
 } from 'react-native';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 import SocialButton from '../components/SocialButton';
-import {AuthContext} from '../navigation/AuthProvider';
+import {Auth} from '../services/auth';
+
 
 class SignupScreen extends Component {
   constructor(props) {
     super(props);
-    state = {
+    this.state = {
       email: '',
       password: '',
       confirmPassword: '',
@@ -23,32 +25,16 @@ class SignupScreen extends Component {
   }
 
   render() {
-
-    const {register} = this.Context(AuthContext);
-
-    const navigation = navigation();
-
-    const { email, password, confirmPassword } = this.state;
-
-    handleEmailChange = email => this.setState({userEmail: email});
-
-    handlePasswordChange = password => this.setState({userPassword: password});
-
-    handleConfirmPassword = confirmPassword => this.setState({userPassword: confirmPassword});
-
-    handleButtonPress = () => {
-      const {email, password} = this.state;
-      this.props.onButtonPress(register(email, password));
-    };
-
+    const {width, height} = Dimensions.get('window');
+    const navigation = this.props.navigation;
     return (
       <View style={styles.container}>
         <Image source={require('../assets/signup.png')} style={styles.logo} />
         <Text style={styles.text}>Create an account</Text>
 
         <FormInput
-          labelValue={email}
-          onChangeText={this.handleEmailChange}
+          labelValue={this.state.email}
+          onChangeText={() => this.setState({ email: this.state.email })}
           placeholderText="Email"
           iconType="user"
           keyboardType="email-address"
@@ -57,25 +43,22 @@ class SignupScreen extends Component {
         />
 
         <FormInput
-          labelValue={password}
-          onChangeText={this.handleEmailChange}
+          labelValue={this.state.password}
+          onChangeText={(password) => this.setState({ password: this.state.password })}
           placeholderText="Password"
           iconType="lock"
           secureTextEntry={true}
         />
 
         <FormInput
-          labelValue={confirmPassword}
-          onChangeText={this.handleConfirmPassword}
+          labelValue={this.state.confirmPassword}
+          onChangeText={(confirmPassword) => this.setState({ confirmPassword: this.state.confirmPassword })}
           placeholderText="Confirm Password"
           iconType="lock"
           secureTextEntry={true}
         />
 
-        <FormButton
-          buttonTitle="Sign Up"
-          onPress={this.handleButtonPress}
-        />
+        <FormButton buttonTitle="Sign Up" onPress={() => Auth.signUp(this.state.email, this.state.password, this.state.confirmPassword)} />
 
         <View style={styles.textPrivate}>
           <Text style={styles.color_textPrivate}>
@@ -155,6 +138,7 @@ const styles = StyleSheet.create({
     fontSize: 28,
     marginBottom: 10,
     color: '#051d5f',
+    fontWeight: 'bold',
   },
   navButton: {
     marginTop: 15,

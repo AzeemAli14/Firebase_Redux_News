@@ -4,6 +4,7 @@ import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 import SocialButton from '../components/SocialButton';
 import {AuthContext} from '../navigation/AuthProvider';
+import { connect } from 'react-redux';
 
 const SignupScreen = ({navigation}) => {
   const [email, setEmail] = useState();
@@ -14,11 +15,16 @@ const SignupScreen = ({navigation}) => {
 
   return (
     <View style={styles.container}>
+            {/* // SignupScreen logo. */}
+
       <Image
         source={require('../assets/signup.png')}
         style={styles.logo}
       />
       <Text style={styles.text}>Create an account</Text>
+
+      {/* // FormInput is our custom component that will receive the email props. */}
+
 
       <FormInput
         labelValue={email}
@@ -30,6 +36,8 @@ const SignupScreen = ({navigation}) => {
         autoCorrect={false}
       />
 
+{/* // FormInput is our custom component that will receive the PASSWORD props. */}
+
       <FormInput
         labelValue={password}
         onChangeText={(userPassword) => setPassword(userPassword)}
@@ -38,6 +46,8 @@ const SignupScreen = ({navigation}) => {
         secureTextEntry={true}
       />
 
+{/* // FormInput is our custom component that will receive the confirm PASSWORD props. */}
+
       <FormInput
         labelValue={confirmPassword}
         onChangeText={(userPassword) => setConfirmPassword(userPassword)}
@@ -45,6 +55,8 @@ const SignupScreen = ({navigation}) => {
         iconType="lock"
         secureTextEntry={true}
       />
+
+      {/* // FormInput is our custom component that will receive the onPress props and will send to the context API */}
 
       <FormButton
         buttonTitle="Sign Up"
@@ -95,15 +107,14 @@ const SignupScreen = ({navigation}) => {
   );
 };
 
-// const mapStateToProps = ({ routes, sessionReducer: { loading, error, registered } }) => ({
-//   routes: routes,
-//   loading: loading,
-//   error: error,
+ // Here we pass the registered state to the redux props
+// const mapStateToProps = ({sessionReducer: { registered } }) => ({
 //   registered: registered
 // });
 
+// //  Here we dispatching the states to the redux props.
 // const mapDispatchToProps = {
-//   signup: signupUser
+//   signup: signup
 // };
 
 // export default connect(
@@ -111,7 +122,7 @@ const SignupScreen = ({navigation}) => {
 //   mapDispatchToProps
 // )(SignupScreen);
 
-export default SignupScreen
+export default SignupScreen;
 
 const styles = StyleSheet.create({
   container: {

@@ -1,48 +1,57 @@
-import React, {useContext, useState} from 'react';
+import React, {Component, useContext, useState} from 'react';
 import {
+  Alert,
   View,
   Text,
   TouchableOpacity,
   Image,
+  StatusBar,
   Platform,
   StyleSheet,
   ScrollView,
 } from 'react-native';
+import auth from '@react-native-firebase/auth';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 import SocialButton from '../components/SocialButton';
-import {AuthContext} from '../navigation/AuthProvider';
-import TopBar from '../components/TopBar';
+import { COLOR_WHITE } from '../constants/Colors';
 
 class LoginScreen extends Component {
   constructor(props) {
     super(props);
-    state = {
+    this.state = {
       email: '',
       password: '',
     };
   }
 
+  handleEmailChange = email => this.setState({email});
+
+  handlePasswordChange = password => this.setState({password});
+
+  // handleButtonPress = () => {
+  //   const {email, password} = this.state;
+  //   Auth.signIn(email, password);
+  // };
+
+  signIn = async() => {
+    const {email, password} = this.state;
+    if (!email || !password) {
+      Alert.alert('Error', 'Please enter all fields');
+    }
+
+    return await auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(() => {})
+      .catch(err => Alert.alert(err.code, err.message));
+  };
+
   render() {
-    
-    const {login} = this.Context(AuthContext);
-
-    const navigation = navigation();
-
-    const { email, password } = this.state;
-
-    handleEmailChange = email => this.setState({email});
-
-    handlePasswordChange = password => this.setState({password});
-
-    handleButtonPress = () => {
-      const {email, password} = this.state;
-      this.props.onButtonPress(login(email, password));
-    };
-
+    const navigation = this.props.navigation;
+    const {email, password} = this.state; // For managing the state of email and password in labelValue.
     return (
       <ScrollView contentContainerStyle={styles.container}>
-        <TopBar />
+        <StatusBar barStyle = "dark-content" hidden = {false} backgroundColor = "#fff" translucent = {true}/>
         <Image source={require('../assets/login.png')} style={styles.logo} />
         <Text style={styles.text}>Welcome Back</Text>
 
@@ -64,9 +73,9 @@ class LoginScreen extends Component {
           secureTextEntry={true}
         />
 
-        <FormButton buttonTitle="Sign In" onPress={this.handleButtonPress} />
+        <FormButton buttonTitle="Sign In" onPress={this.signIn} />
 
-        <TouchableOpacity style={styles.forgotButton} onPress={() => {}}>
+        <TouchableOpacity style={styles.forgotButton} onPress={() => navigation.navigate("Forgot")}>
           <Text style={styles.navButtonText}>Forgot Password?</Text>
         </TouchableOpacity>
 
@@ -92,7 +101,7 @@ class LoginScreen extends Component {
 
         <TouchableOpacity
           style={styles.forgotButton}
-          onPress={() => navigation.navigate('Signup')}>
+          onPress={() => navigation.navigate("SignUp")}>
           <Text style={styles.navButtonText}>
             Don't have an acount? Create here
           </Text>
@@ -107,8 +116,7 @@ class LoginScreen extends Component {
 // });
 
 // const mapDispatchToProps = {
-//   login: loginUser,
-//   restore: restoreSession
+//   login: loginUser
 // };
 
 // export default connect(
@@ -125,7 +133,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 20,
     paddingTop: 50,
-    backgroundColor: '#fff',
+    backgroundColor: COLOR_WHITE,
   },
   logo: {
     height: 250,
@@ -137,6 +145,7 @@ const styles = StyleSheet.create({
     fontSize: 28,
     marginBottom: 10,
     color: '#051d5f',
+    fontWeight: 'bold',
   },
   navButton: {
     marginTop: 15,
