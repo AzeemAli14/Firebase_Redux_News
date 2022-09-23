@@ -5,6 +5,7 @@ import {COLOR_WHITE} from '../constants/Colors';
 import {connect, Provider} from 'react-redux';
 import configureStore from '../redux/store';
 
+
 const store = configureStore();
 
 const MainStack = () => {

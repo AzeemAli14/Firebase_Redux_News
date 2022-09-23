@@ -1,6 +1,7 @@
 import React from 'react';
 import TabStack from './TabStack';
 import {createStackNavigator} from '@react-navigation/stack';
+import AppContainer from './'
 import {COLOR_WHITE} from '../constants/Colors';
 import {connect, Provider} from 'react-redux';
 import configureStore from '../redux/store';
