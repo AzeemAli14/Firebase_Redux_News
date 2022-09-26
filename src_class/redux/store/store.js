@@ -1,11 +1,6 @@
-import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
+import { createStore } from "redux";
+import RootReducer from './RootReducer';
 
-import rootReducer from './RootReducer';
+export const store = createStore(RootReducer);
 
-const configureStore = () => {
-  const middleware = [thunk];
-  return createStore(rootReducer, applyMiddleware(...middleware));
-};
-
-export default configureStore;
+// All the reducer are stored in one center point location which is being called redux store.

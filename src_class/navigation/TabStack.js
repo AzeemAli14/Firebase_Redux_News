@@ -6,12 +6,13 @@ import Business from '../screens/Business'
 import HealthScreen from '../screens/HealthScreen'
 import SportsScreen from '../screens/SportsScreen'
 import TechScreen from '../screens/TechScreen'
-import ProfileScreen from '../screens/ProfileScreen'
+import ProfileScreen from '../../src/screens/ProfileScreen'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { COLOR_WHITE } from '../constants/Colors';
 
 const TabStack = () => {
   const Tab = createBottomTabNavigator();
+  // Botton Stack is used for the Bottom Bar
 
   return (
     <Tab.Navigator initialRouteName='Home' screenOptions={{headerShown: false, statusBarColor: "#fff"}}>

@@ -50,25 +50,25 @@ class ProfileScreen extends Component {
     ImagePicker.openCamera({
       width: 300,
       height: 400,
-      cropping: true,
+      cropping: false,
     }).then(image => {
       console.log(image);
       this.setState({profile: image.path});
     });
   };
 
-  onSelectedImage = image => {
-    let newDataImg = [...this.state.imageList];
+  // onSelectedImage = image => {
+  //   let newDataImg = [...this.state.imageList];
 
-    const source = {uri: image.path};
-    let item = {
-      id: this.state.imageList.length + 1,
-      url: source,
-    };
-    // console.log(this.onDelete);
-    newDataImg.push(item);
-    this.setState({imageList: newDataImg});
-  };
+  //   const source = {uri: image.path};
+  //   let item = {
+  //     id: this.state.imageList.length + 1,
+  //     url: source,
+  //   };
+  //   // console.log(this.onDelete);
+  //   newDataImg.push(item);
+  //   this.setState({imageList: newDataImg});
+  // };
 
   render() {
     let profile = this.state;

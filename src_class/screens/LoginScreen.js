@@ -15,6 +15,8 @@ import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 import SocialButton from '../components/SocialButton';
 import { COLOR_WHITE } from '../constants/Colors';
+import { connect } from 'react-redux';
+import { SESSION_SUCCESS } from '../redux/actions/ActionType';
 
 class LoginScreen extends Component {
   constructor(props) {
@@ -111,12 +113,13 @@ class LoginScreen extends Component {
   }
 }
 
-// const mapStateToProps = ()) => ({
+// const mapStateToProps = (state) => {
 //   user: user
-// });
+// };
 
-// const mapDispatchToProps = {
-//   login: loginUser
+// const mapDispatchToProps = (dispatch) => {
+//   login: loginUser,
+//   SESSION_SUCCESS
 // };
 
 // export default connect(

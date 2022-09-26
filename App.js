@@ -17,26 +17,27 @@
 
 // /* Class Components */
 
-// import AppContainer from './src_class/navigation'
-// import SignupScreen from './src_class/screens/SignupScreen';
-// import LoginScreen from './src_class/screens/LoginScreen';
-// class App extends Component {
-//   render() {
-//     return (
-//       <AppContainer/> /* Here we import Class Components AppContainer from index.js */
-//     )
-//   }
-// }
-
-// export default App;
-
-import React from 'react'
-import SplashScreen from './src_class/screens/SplashScreen'
-
-const App = () => {
-  return (
-    <SplashScreen />
-  )
+import AppContainer from './src_class/navigation'
+import SignupScreen from './src_class/screens/SignupScreen';
+import LoginScreen from './src_class/screens/LoginScreen';
+import React, { Component } from 'react';
+class App extends Component {
+  render() {
+    return (
+      <AppContainer/> /* Here we import Class Components AppContainer from index.js */
+    )
+  }
 }
 
-export default App
+export default App;
+
+// import React from 'react'
+// import SplashScreen from './src_class/screens/SplashScreen'
+
+// const App = () => {
+//   return (
+//     <SplashScreen />
+//   )
+// }
+
+// export default App

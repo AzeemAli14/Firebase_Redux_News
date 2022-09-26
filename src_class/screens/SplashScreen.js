@@ -14,7 +14,7 @@ import {COLOR_WHITE} from '../constants/Colors';
 class SplashScreen extends Component {
   constructor(props) {
     super(props);
-    // this.navigation = this.props.navigation;
+    // navigation = this.props.navigation;
   }
 
   // buttonFunctional() {
@@ -48,8 +48,7 @@ class SplashScreen extends Component {
           <View>
             <FormButton
               buttonTitle="Class Components"
-              onPress={() => navigation.navigate("AppContainer")}
-            />
+              onPress={() => navigation.navigate("AppContainer")}/>
           </View>
         </View>
         <View style={styles.textPrivate}>

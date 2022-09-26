@@ -2,21 +2,7 @@ import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 import * as types from './actionsTypes';
 
-export const restoreSession = () => dispatch => {
-  dispatch(sessionLoading());
-  dispatch(sessionRestoring());
-
-  firebaseService.auth().onAuthStateChanged(user => {
-    if (user) {
-      dispatch(sessionSuccess(user));
-    } else {
-      dispatch(sessionLogout());
-    }
-  });
-};
-
 export const loginUser = async(email, password) => dispatch => {
-  dispatch(sessionLoading());
 //Here we use the login arrow function to set the user logging in
           
     // Async keyword use for define function for use await task, 
@@ -36,22 +22,26 @@ export const loginUser = async(email, password) => dispatch => {
   }
 
 export const signupUser = async (email, password) => dispatch => {
-  dispatch(sessionLoading());
+            //Here we use the register arrow function to set the user registering to firebase DB
   try {
+        // For the creation of the user, we will pass email and password to the firebase function for the user registeration
    auth().createUserWithEmailAndPassword(email, password)
     .then(() => {
+      //Once the user creation has happened successfully, we can add the currentUser into firestore
+              //with the appropriate details.
       firestore().collection('users').doc(auth().currentUser.uid)
       .set({
-          fname: '',
-          lname: '',
-          email: email,
-          createdAt: firestore.Timestamp.fromDate(new Date()),
-          userImg: null,
+        email: '',
+        password: '',
+        confirmPassword: '',
+        createdAt: firestore.Timestamp.fromDate(new Date()),
       })
+                    //ensure we catch any errors at this stage to advise us if something does go wrong
       .catch(error => {
           console.log('Something went wrong with added user to firestore: ', error);
       })
     })
+                //we need to catch the whole sign up process if it fails too.
     .catch(error => {
         console.log('Something went wrong with sign up: ', error);
     });
@@ -59,9 +49,8 @@ export const signupUser = async (email, password) => dispatch => {
     console.log(e);
   }
 }
-
+        //Here we use the logout arrow function to set the user logout from firebase DB
 export const logoutUser = async () => dispatch => {
-  dispatch(sessionLoading());
  //Here we use the logout arrow function to set the user logout from firebase DB
     try {
      auth().signOut();

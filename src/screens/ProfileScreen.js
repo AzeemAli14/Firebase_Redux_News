@@ -2,7 +2,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import React, {useState} from 'react';
 import auth from '@react-native-firebase/auth';
 import {TouchableOpacity, Image} from 'react-native';
-import ImagePicker from 'react-native-image-crop-picker';
+import ImagePicker, { openCamera } from 'react-native-image-crop-picker';
 import {androidCameraPermission} from '../constants/Permissions';
 import {Platform} from 'react-native';
 import {Alert} from 'react-native';
@@ -60,7 +60,7 @@ const ProfileScreen = () => {
         style={styles.image}
         source={profile ? {uri: profile} : imgPlaceHolder}
       />
-      <TouchableOpacity onPress={chooseImg} style={{marginTop: 10}}>
+      <TouchableOpacity onPress={openCamera} style={{marginTop: 10}}>
         <Text style={{color: '#000'}}> Choose Image </Text>
       </TouchableOpacity>
       <View>
